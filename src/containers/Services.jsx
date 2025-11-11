@@ -11,7 +11,7 @@ const Services = () => {
           title="Build experiences that spark conversions."
           description="From landing pages to enterprise ecosystems, we code experiences that turn visitors into loyal customers."
         />
-        <Row className="g-4" data-animate="fade-up" data-animate-delay="0.1s">
+        <Row className="g-4 justify-content-center" data-animate="fade-up" data-animate-delay="0.1s">
           {servicesData.map((service, index) => (
             <Col key={service.title} lg={4} md={6} data-animate="fade-up" data-animate-delay={`${0.15 + index * 0.05}s`}>
               <div className="service-card">
