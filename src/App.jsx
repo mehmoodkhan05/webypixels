@@ -10,6 +10,7 @@ import Trends from "./containers/Trends";
 import ContactCTA from "./containers/ContactCTA";
 import useScrollReveal from "./hooks/useScrollReveal";
 import "./App.css";
+import ChatBot from "./components/ChatBot";
 
 function App() {
   useScrollReveal();
@@ -31,6 +32,7 @@ function App() {
       <footer className="footer">
         <div>© {new Date().getFullYear()} WebyPixels. Building growth-ready digital products worldwide.</div>
       </footer>
+      <ChatBot />
     </div>
   );
 }

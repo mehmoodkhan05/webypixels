@@ -7,6 +7,18 @@ import { heroStats } from "../data/hero";
 const Hero = () => {
   const [showConvert, setShowConvert] = useState(false);
 
+  const handleQuoteClick = () => {
+    if (typeof window !== "undefined") {
+      window.location.href = "/quote";
+    }
+  };
+
+  const handleChatClick = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("chatbot:open"));
+    }
+  };
+
   return (
     <header className="hero-section" id="home">
       <Navbar expand="lg" variant="dark" className="custom-navbar" sticky="top" data-animate="fade-down" data-animate-delay="0.05s">
@@ -60,10 +72,10 @@ const Hero = () => {
               user-focused digital products. We blend bold visuals with conversion-first UX to fuel growth.
             </p>
             <div className="hero-buttons mt-4" data-animate="fade-up" data-animate-delay="0.25s">
-              <Button className="btn-cta-primary" size="lg">
+              <Button className="btn-cta-primary" size="lg" onClick={handleQuoteClick}>
                 🚀 Get a Free Quote
               </Button>
-              <Button className="btn-cta-secondary" size="lg">
+              <Button className="btn-cta-secondary" size="lg" onClick={handleChatClick}>
                 💬 Let’s Build Your App
               </Button>
             </div>
