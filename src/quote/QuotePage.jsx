@@ -75,7 +75,7 @@ function QuotePage() {
       setStatus("error");
       setError(
         err.message ||
-          "We couldn’t send that just now. Please double-check your details or try again shortly."
+        "We couldn’t send that just now. Please double-check your details or try again shortly."
       );
     }
   };
@@ -165,19 +165,15 @@ function QuotePage() {
             </div>
             <div className="form-field">
               <label htmlFor="budget">Estimated budget</label>
-              <select
+              <input
                 id="budget"
                 name="budget"
+                type="number"
+                placeholder="Enter your budget"
                 value={formValues.budget}
                 onChange={handleChange}
                 disabled={status === "sending"}
-              >
-                <option value="Under $5k">Under $5k</option>
-                <option value="$5k - $10k">$5k - $10k</option>
-                <option value="$10k - $25k">$10k - $25k</option>
-                <option value="$25k - $50k">$25k - $50k</option>
-                <option value="$50k+">$50k+</option>
-              </select>
+              />
             </div>
             <div className="form-field">
               <label htmlFor="timeline">Ideal launch timeline</label>
