@@ -1,17 +1,11 @@
 import { useState } from "react";
-import { Container, Row, Col, Button, Navbar, Nav } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { TypeAnimation } from "react-type-animation";
-import headerLogo from "../assets/wp_logo.png";
 import { heroStats } from "../data/hero";
+import SiteNavbar from "../components/Navbar";
 
 const Hero = () => {
   const [showConvert, setShowConvert] = useState(false);
-
-  const handleQuoteClick = () => {
-    if (typeof window !== "undefined") {
-      window.location.href = "/quote";
-    }
-  };
 
   const handleChatClick = () => {
     if (typeof window !== "undefined") {
@@ -21,22 +15,7 @@ const Hero = () => {
 
   return (
     <header className="hero-section" id="home">
-      <Navbar expand="lg" variant="dark" className="custom-navbar" sticky="top" data-animate="fade-down" data-animate-delay="0.05s">
-        <Container>
-          <Navbar.Brand href="#home" className="d-flex align-items-center">
-            <img src={headerLogo} alt="WebyPixels logo" className="navbar-logo" />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="main-navbar" />
-          <Navbar.Collapse id="main-navbar">
-            <Nav className="ms-auto align-items-start align-items-lg-center gap-lg-3">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#about">About Us</Nav.Link>
-              <Nav.Link href="#services">Services</Nav.Link>
-              <Nav.Link href="#contact">Contact Us</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <SiteNavbar />
       <div className="pixel-grid" aria-hidden="true" />
       <Container>
         <Row className="align-items-center g-5">
@@ -72,7 +51,7 @@ const Hero = () => {
               user-focused digital products. We blend bold visuals with conversion-first UX to fuel growth.
             </p>
             <div className="hero-buttons mt-4" data-animate="fade-up" data-animate-delay="0.25s">
-              <Button className="btn-cta-primary" size="lg" onClick={handleQuoteClick}>
+              <Button className="btn-cta-primary" size="lg" as="a" href="/quote">
                 🚀 Get a Free Quote
               </Button>
               <Button className="btn-cta-secondary" size="lg" onClick={handleChatClick}>

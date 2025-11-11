@@ -4,8 +4,8 @@ export const contactOptions = [
   { icon: "🌐", label: "www.webypixels.com", href: "https://www.webypixels.com" },
   {
     icon: "📍",
-    label: "2nd Floor, Swat Market, Swat Mingora, 19130, Pakistan",
-    href: "https://www.google.com/maps/place/WebyPixels/@34.771237,72.357914,18z/data=!3m1!4b1!4m6!3m5!1s0x38dc2375412b36b5:0xe180648e57f21e58!8m2!3d34.7712348!4d72.3592015!16s%2Fg%2F11t9mrsr_c?entry=ttu&g_ep=EgoyMDI1MTEwNC4xIKXMDSoASAFQAw%3D%3D",
+    label: "Ground Floor, Sultan Tower, Swat Mingora, 19130, Pakistan",
+    href: "https://www.google.com/maps/place/Sultan+Tower,+Makan+Bagh+Mingora,+Mongora,+19130,+Pakistan/@34.7669907,72.3590529,20z/data=!4m6!3m5!1s0x38dc22c1a1be1647:0x947500378e5e02a2!8m2!3d34.7667826!4d72.3591385!16s%2Fg%2F11bw3_72dg?entry=ttu&g_ep=EgoyMDI1MTEwNS4wIKXMDSoASAFQAw%3D%3D",
   },
 ];
 

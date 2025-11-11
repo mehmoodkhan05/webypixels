@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { contactOptions } from "../data/contact";
 import { sendLeadSubmission } from "../services/emailClient";
-import "./quote.css";
 
 const initialFormState = {
   name: "",
@@ -75,7 +74,7 @@ function QuotePage() {
       setStatus("error");
       setError(
         err.message ||
-        "We couldn’t send that just now. Please double-check your details or try again shortly."
+          "We couldn’t send that just now. Please double-check your details or try again shortly."
       );
     }
   };
@@ -84,9 +83,6 @@ function QuotePage() {
     <div className="quote-page">
       <main className="quote-card" data-state={status}>
         <header>
-          <a href="/" className="quote-card__back-link">
-            ← Back to WebyPixels
-          </a>
           <h1>Let’s Build Something Exceptional</h1>
           <p>
             Tell us about your project so we can prepare a tailored quote and roadmap.

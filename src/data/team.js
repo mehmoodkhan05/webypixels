@@ -9,7 +9,7 @@ export const teamMembers = [
     image: ceoImage,
   },
   {
-    name: "Mehtab Khan",
+    name: "Mehtab Uddin",
     designation: "Web Developer",
     image: mehtabImage,
   },

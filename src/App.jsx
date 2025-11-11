@@ -1,40 +1,39 @@
-import Hero from "./containers/Hero";
-import About from "./containers/About";
-import Services from "./containers/Services";
-import WhyChoose from "./containers/WhyChoose";
-import TechStack from "./containers/TechStack";
-import Portfolio from "./containers/Portfolio";
-import Testimonials from "./containers/Testimonials";
-import Team from "./containers/Team";
-import Trends from "./containers/Trends";
-import ContactCTA from "./containers/ContactCTA";
+
 import useScrollReveal from "./hooks/useScrollReveal";
 import "./App.css";
 import ChatBot from "./components/ChatBot";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Main from "./containers/Main";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import QuotePage from "./components/QuotePage";
 
 function App() {
   useScrollReveal();
 
   return (
-    <div className="page-wrapper">
-      <Hero />
-      <main>
-        <About />
-        <Services />
-        <WhyChoose />
-        <TechStack />
-        <Portfolio />
-        <Testimonials />
-        <Team />
-        <Trends />
-        <ContactCTA />
-      </main>
-      <footer className="footer">
-        <div>© {new Date().getFullYear()} WebyPixels. Building growth-ready digital products worldwide.</div>
-      </footer>
-      <ChatBot />
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />} exact >
+            <Route index element={<Main />} />
+            <Route path="/quote" element={<QuotePage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </>
   );
+}
+
+export const Layout = () => {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+      <ChatBot />
+    </>
+  )
 }
 
 export default App;
