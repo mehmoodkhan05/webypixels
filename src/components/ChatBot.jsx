@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./ChatBot.css";
 import { generateChatResponse } from "../services/aiClient";
 import { sendLeadSubmission } from "../services/emailClient";
@@ -293,6 +293,7 @@ function ChatBot() {
   const [leadError, setLeadError] = useState("");
   const [pendingLead, setPendingLead] = useState(false);
   const viewportRef = useRef(null);
+  const rootRef = useRef(null);
 
   const initializeConversation = useCallback(() => {
     const greeting = getNextFromCycle(greetingCycleRef, greetingMessages);
@@ -363,6 +364,30 @@ function ChatBot() {
       setPendingLead(false);
     }
   }, [pendingLead, isOpen, isCollectingLead, startLeadCapture]);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const handleClickOutside = (event) => {
+      const rootNode = rootRef.current;
+      if (!rootNode) return;
+      const target = event.target;
+      if (
+        target instanceof Node &&
+        !rootNode.contains(target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside, true);
+    document.addEventListener("touchstart", handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("touchstart", handleClickOutside, true);
+    };
+  }, [isOpen]);
 
   const handleLeadSubmit = async (payload) => {
     setLeadStatus("sending");
@@ -460,22 +485,31 @@ function ChatBot() {
     });
   }, [messages, isOpen]);
 
-  const previewText = useMemo(() => {
-    const lastMessage = messages[messages.length - 1];
-    return lastMessage?.text?.slice(0, 40) ?? "Need project guidance?";
-  }, [messages]);
-
   const chipOptions =
     quickReplyOptions.length > 0 ? quickReplyOptions : quickReplies;
 
   return (
-    <div className={`chatbot ${isOpen ? "chatbot--open" : ""}`}>
-      <button type="button" className="chatbot-toggle" onClick={toggleChat}>
-        <span className="chatbot-toggle__icon">💬</span>
-        <div className="chatbot-toggle__copy">
-          <strong>{isOpen ? "Close chat" : "Chat with us"}</strong>
-          {!isOpen && <span>{previewText}...</span>}
-        </div>
+    <div
+      ref={rootRef}
+      className={`chatbot ${isOpen ? "chatbot--open" : ""}`}
+    >
+      <button
+        type="button"
+        className="chatbot-toggle"
+        onClick={toggleChat}
+        aria-label={isOpen ? "Close chat assistant" : "Open chat assistant"}
+      >
+        <span
+          className={`chatbot-toggle__icon ${
+            isOpen ? "" : "chatbot-toggle__icon--flicker"
+          }`}
+          aria-hidden="true"
+        >
+          💬
+        </span>
+        <span className="visually-hidden">
+          {isOpen ? "Close chat" : "Chat with us"}
+        </span>
       </button>
 
       {isOpen && (
